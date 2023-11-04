@@ -1,14 +1,13 @@
+import random
+
 import streamlit as st
 import plotly.express as px
 import pandas as pd
-import random
 import numpy as np
-
 
 import plotly.io as pio
 pio.templates.default = 'plotly'
 
-# st.set_page_config(layout="wide")
 
 random.seed(21412552)
 
@@ -33,13 +32,10 @@ fig = px.bar_polar(
     theta="year",
     color="temperature",
     range_r=(11, df["temperature"].max() + 1),
-    # labels="year",
-    # title="Average Temperature per year (ºC)"
 )
 
 fig.update_layout(height=700)
 
-# fig.write_image("spiral_plot.png")
 st.title("Spiral plot per PAC 2 Visualitzacio de Dades")
 
 st.header("Average Temperature (ºC) per year")
