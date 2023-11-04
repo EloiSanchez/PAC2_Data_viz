@@ -6,7 +6,8 @@ import pandas as pd
 import numpy as np
 
 import plotly.io as pio
-pio.templates.default = 'plotly'
+
+pio.templates.default = "plotly"
 
 
 random.seed(21412552)
@@ -17,13 +18,15 @@ data = {
 
 size = len(data["year"])
 
-data["rand"] = np.array([random.randrange(110, 140)/10 for _ in range(size)])
+data["rand"] = np.array([random.randrange(110, 140) / 10 for _ in range(size)])
 data["increase"] = np.array([np.exp(1 + x / 80) for x in range(size)])
 data["temperature"] = data["rand"] + data["increase"]
 
 df = pd.DataFrame(data)
 
-df["theta"] = 360 * (df["year"] - df["year"].min()) / (df["year"].max() - df["year"].min())
+df["theta"] = (
+    360 * (df["year"] - df["year"].min()) / (df["year"].max() - df["year"].min())
+)
 df["year"] = df["year"].astype(str)
 
 fig = px.bar_polar(
